@@ -1,14 +1,14 @@
 /* Base */
 :root {
-  --bg: #faf9fb;
+  --bg: #f8f6f0;
   --bg-alt: #ffffff;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --primary: #6c63ff; /* soft indigo */
-  --primary-600: #5850ec;
-  --border: #e5e7eb;
+  --text: #2d3748;
+  --muted: #718096;
+  --primary: #667eea;
+  --primary-600: #5a67d8;
+  --border: #e2e8f0;
   --card: #ffffff;
-  --shadow: 0 8px 30px rgba(0,0,0,0.06);
+  --shadow: 0 8px 30px rgba(0,0,0,0.08);
 }
 
 * { box-sizing: border-box; }
@@ -48,11 +48,33 @@ a { color: inherit; text-decoration: none; }
 /* Top welcome banner */
 .top-banner {
   width: 100%;
-  background: #111827; /* dark slate */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #fff;
   text-align: center;
-  padding: .5rem 1rem;
-  font-weight: 600;
+  padding: 1.2rem 1rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.top-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: banner-shine 3s ease-in-out infinite;
+}
+
+@keyframes banner-shine {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
 }
 
 /* Intro (single section layout like screenshot) */
@@ -94,13 +116,19 @@ a { color: inherit; text-decoration: none; }
   padding: 1.25rem 1.25rem 0;
   /* one-time slide-in animation from right to left */
   animation: profile-slide-in 3000ms cubic-bezier(.22,.61,.36,1) 80ms 1 both;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.profile-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.15);
 }
 .profile-card__avatar { width: 140px; height: 140px; border-radius: 50%; overflow: hidden; margin: 1rem auto; }
 .profile-card__avatar img { width: 100%; height: 100%; object-fit: cover; }
 .profile-card__name { text-align: center; font-weight: 800; margin: .25rem 0 1rem; line-height: 1.2; }
 .profile-card__role { text-align: center; letter-spacing: .25em; font-size: .8rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
 .profile-card__socials { display: flex; justify-content: center; align-items: center; margin: 10px;}
-.profile-card__socials a { display: flex; align-items: center;justify-content: center;}
+.profile-card__socials a { display: flex; align-items: center;justify-content: center; transition: transform 0.2s ease, color 0.2s ease;}
+.profile-card__socials a:hover { transform: scale(1.1); color: var(--primary); }
 /* Old hero styles removed (not used) */
 
 @keyframes profile-slide-in {
@@ -158,7 +186,18 @@ input:focus, textarea:focus { outline: none; border-color: var(--primary); box-s
 .info-section--alt { background: var(--bg-alt); }
 .info-title { margin: 0 0 1rem; font-weight: 800; font-size: 1.6rem; }
 .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-.info-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; box-shadow: var(--shadow); }
+.info-card { 
+  background: #fff; 
+  border: 1px solid var(--border); 
+  border-radius: 12px; 
+  padding: 1rem 1.25rem; 
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0,0,0,.1);
+}
 .info-card h3 { margin: 0 0 .6rem; font-size: 1.05rem; }
 .info-card ul { margin: 0; padding-left: 1.1rem; }
 
@@ -175,6 +214,51 @@ input:focus, textarea:focus { outline: none; border-color: var(--primary); box-s
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Enhanced animations */
+.intro__hello {
+  background: linear-gradient(135deg, var(--primary), #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease-in-out infinite alternate;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Floating animation for profile avatar */
+.profile-card__avatar {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Enhanced button animations */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
 }
 
 
