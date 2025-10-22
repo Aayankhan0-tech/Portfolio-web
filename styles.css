@@ -1,7 +1,7 @@
 /* Base */
 :root {
   --bg: #f8f6f0;
-  --bg-alt: #ffffff;
+  --bg-alt: #f8f6f0;
   --text: #2d3748;
   --muted: #718096;
   --primary: #667eea;
@@ -48,7 +48,7 @@ a { color: inherit; text-decoration: none; }
 /* Top welcome banner */
 .top-banner {
   width: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: black;
   color: #fff;
   text-align: center;
   padding: 1.2rem 1rem;
