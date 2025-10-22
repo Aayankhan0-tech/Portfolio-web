@@ -18,4 +18,21 @@ if (form) {
   });
 }
 
+// Scroll reveal using IntersectionObserver
+const revealEls = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window && revealEls.length) {
+  const io = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal--visible');
+        observer.unobserve(entry.target); // one-time reveal
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+} else {
+  // Fallback: show immediately
+  revealEls.forEach(el => el.classList.add('reveal--visible'));
+}
+
 
